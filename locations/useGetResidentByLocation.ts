@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { Location } from "./useGetLocations"; // Assuming this is the correct path
+import { Location } from "./useGetLocations";
 
 const GET_RESIDENTS_BY_LOCATION = gql`
   query GetLocation($id: ID!) {
@@ -32,7 +32,7 @@ const GET_RESIDENTS_BY_LOCATION = gql`
   }
 `;
 
-interface Character {
+export interface Character {
   id: string;
   name: string;
   status: string;

@@ -1,4 +1,5 @@
 import { gql, useLazyQuery } from "@apollo/client";
+import { useEffect } from "react";
 
 const GET_LOCATIONS = gql`
   query GetLocations($page: Int, $filter: FilterLocation) {
@@ -23,7 +24,7 @@ const GET_LOCATIONS = gql`
   }
 `;
 
-interface Info {
+export interface Info {
   count: number;
   pages: number;
   next?: number | null;
@@ -84,6 +85,10 @@ export const useGetLocations = ({
       filter,
     },
   });
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   return { data: data?.locations, loading, getData };
 };

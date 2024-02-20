@@ -2,32 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+#__next,
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+.main-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.main-background:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.border-b-1 {
+  border-bottom-width: 1px;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  width: 20%;
+  word-break: normal;
+  @apply text-slate-200;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 33%;
+}
+
+tbody tr {
+  border-bottom: 1px solid #dddddd;
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+tbody tr:last-of-type {
+  border-bottom: none;
+}
+
+table,
+td {
+  border-collapse: collapse;
+}
+
+td {
+  text-align: left;
+}
+
+.pagination-item {
+  margin: 0 2px;
+  @apply bg-green-700 text-white rounded-md cursor-pointer w-9 h-9 flex justify-center items-center transition-colors duration-300 select-none;
+}
+
+.pagination-item:hover {
+  @apply bg-green-600;
+}
+
+.pagination-item.active {
+  @apply bg-green-600;
+}
+
+.pagination-item.disabled {
+  @apply bg-green-800;
+}
+
+@media only screen and (max-width: 640px) {
+  th,
+  td {
+    padding: 6px;
+    font-size: 12px;
   }
 }
